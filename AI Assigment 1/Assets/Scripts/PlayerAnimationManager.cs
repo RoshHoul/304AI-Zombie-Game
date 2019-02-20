@@ -6,16 +6,31 @@ public class PlayerAnimationManager : MonoBehaviour
 {
 
     Animator animator;
+    private HitEnemy enemyScript;
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
+        enemyScript = GetComponentInChildren<HitEnemy>();
+        if (enemyScript != null)
+        {
+            enemyScript.isKicking = false;
+        }
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        animator.SetBool("isKicking", Input.GetMouseButton(0));
+
+
+
+        bool kicking = Input.GetMouseButton(0);
+        animator.SetBool("isKicking", kicking);
+        if (enemyScript != null)
+        {
+            enemyScript.isKicking = kicking;
+        }
+
     }
 }

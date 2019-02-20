@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityStandardAssets.Characters.ThirdPerson;
 
 public class AITargetController : MonoBehaviour
@@ -9,13 +10,17 @@ public class AITargetController : MonoBehaviour
 
     public enum AIState { WANDERING, CHASING, DEAD };
 
+
     private GameObject player;
     private AICharacterControl playerCC;
     
     private GameObject[] allWaypoints;
     private int currentWaypoint = 0;
+
     private ThirdPersonCharacter tpCharacter;
     private AIState state = AIState.WANDERING;
+
+    private float deathTimeout = 2.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -56,6 +61,11 @@ public class AITargetController : MonoBehaviour
                 break;
 
             case AIState.DEAD:
+
+                this.GetComponent<NavMeshAgent>().enabled = false;
+                this.GetComponent<AICharacterControl>().enabled = false;
+
+                Destroy(gameObject, deathTimeout);
 
                 break;
         }
