@@ -1,0 +1,331 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1470150782
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1470150789}
+  - component: {fileID: 1470150788}
+  - component: {fileID: 1470150787}
+  - component: {fileID: 1470150786}
+  - component: {fileID: 1470150785}
+  - component: {fileID: 1470150784}
+  - component: {fileID: 1470150783}
+  - component: {fileID: 1470150790}
+  m_Layer: 0
+  m_Name: Zombie
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1470150789
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1470150782}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.9713235, y: -0.00000036909512, z: -3.0961947}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1484724644319926884}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1470150788
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1470150782}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: b235179bd2a63d1468dd430670338c55, type: 3}
+  m_Controller: {fileID: 9100000, guid: e2cf68ff4b1ffda45a77f7307dd789b9, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: '
+
+    Transform ''EthanLeftToe1'' has been deleted
+
+    Transform ''EthanLeftFoot'' has been deleted
+
+    Transform ''EthanLeftLeg'' has been deleted
+
+    Transform ''EthanLeftUpLeg'' has been deleted
+
+    Transform ''EthanRightToe1'' has been deleted
+
+    Transform ''EthanRightFoot'' has been deleted
+
+    Transform ''EthanRightLeg'' has been deleted
+
+    Transform ''EthanRightUpLeg'' has been deleted
+
+    Transform ''EthanJaw'' has been deleted
+
+    Transform ''EthanLeftEye'' has been deleted
+
+    Transform ''EthanRightEye'' has been deleted
+
+    Transform ''EthanHead'' has been deleted
+
+    Transform ''EthanLeftHandIndex3'' has been deleted
+
+    Transform ''EthanLeftHandIndex2'' has been deleted
+
+    Transform ''EthanLeftHandIndex1'' has been deleted
+
+    Transform ''EthanLeftHandMiddle3'' has been deleted
+
+    Transform ''EthanLeftHandMiddle2'' has been deleted
+
+    Transform ''EthanLeftHandMiddle1'' has been deleted
+
+    Transform ''EthanLeftHandPinky3'' has been deleted
+
+    Transform ''EthanLeftHandPinky2'' has been deleted
+
+    Transform ''EthanLeftHandPinky1'' has been deleted
+
+    Transform ''EthanLeftHandRing3'' has been deleted
+
+    Transform ''EthanLeftHandRing2'' has been deleted
+
+    Transform ''EthanLeftHandRing1'' has been deleted
+
+    Transform ''EthanLeftHandThumb3'' has been deleted
+
+    Transform ''EthanLeftHandThumb2'' has been deleted
+
+    Transform ''EthanLeftHandThumb1'' has been deleted
+
+    Transform ''EthanLeftHand'' has been deleted
+
+    Transform ''EthanLeftForeArm'' has been deleted
+
+    Transform ''EthanLeftArm'' has been deleted
+
+    Transform ''EthanLeftShoulder'' has been deleted
+
+    Transform ''EthanRightHandIndex3'' has been deleted
+
+    Transform ''EthanRightHandIndex2'' has been deleted
+
+    Transform ''EthanRightHandIndex1'' has been deleted
+
+    Transform ''EthanRightHandMiddle3'' has been deleted
+
+    Transform ''EthanRightHandMiddle2'' has been deleted
+
+    Transform ''EthanRightHandMiddle1'' has been deleted
+
+    Transform ''EthanRightHandPinky3'' has been deleted
+
+    Transform ''EthanRightHandPinky2'' has been deleted
+
+    Transform ''EthanRightHandPinky1'' has been deleted
+
+    Transform ''EthanRightHandRing3'' has been deleted
+
+    Transform ''EthanRightHandRing2'' has been deleted
+
+    Transform ''EthanRightHandRing1'' has been deleted
+
+    Transform ''EthanRightHandThumb3'' has been deleted
+
+    Transform ''EthanRightHandThumb2'' has been deleted
+
+    Transform ''EthanRightHandThumb1'' has been deleted
+
+    Transform ''EthanRightHand'' has been deleted
+
+    Transform ''EthanRightForeArm'' has been deleted
+
+    Transform ''EthanRightArm'' has been deleted
+
+    Transform ''EthanRightShoulder'' has been deleted
+
+    Transform ''EthanNeck'' has been deleted
+
+    Transform ''EthanSpine2'' has been deleted
+
+    Transform ''EthanSpine1'' has been deleted
+
+    Transform ''EthanSpine'' has been deleted
+
+    Transform ''EthanHips'' has been deleted
+
+    Transform ''EthanSkeleton'' has been deleted'
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!54 &1470150787
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1470150782}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!136 &1470150786
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1470150782}
+  m_Material: {fileID: 13400000, guid: c2815a7ab32e42c4bb42f59caacb8ec1, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.3
+  m_Height: 1.6
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.8, z: 0}
+--- !u!195 &1470150785
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1470150782}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 1
+  m_Acceleration: 10
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0.2
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &1470150784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1470150782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c5335f0882fe4d478883cc8c58ce906, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+--- !u!114 &1470150783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1470150782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce7a80d520cacc042b5fe14f373d8173, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MovingTurnSpeed: 360
+  m_StationaryTurnSpeed: 180
+  m_JumpPower: 6
+  m_GravityMultiplier: 2
+  m_RunCycleLegOffset: 0.2
+  m_MoveSpeedMultiplier: 1
+  m_AnimSpeedMultiplier: 1
+  m_GroundCheckDistance: 0.2
+--- !u!114 &1470150790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1470150782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25357f9ee083f634ea307d28c2589481, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &1484724644319789286
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1470150789}
+    m_Modifications:
+    - target: {fileID: 100002, guid: c9c754d8d59c57e4fa462d7bbdf2031e, type: 3}
+      propertyPath: m_Name
+      value: girlscout_t_masuyama
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: c9c754d8d59c57e4fa462d7bbdf2031e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: c9c754d8d59c57e4fa462d7bbdf2031e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: c9c754d8d59c57e4fa462d7bbdf2031e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: c9c754d8d59c57e4fa462d7bbdf2031e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: c9c754d8d59c57e4fa462d7bbdf2031e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: c9c754d8d59c57e4fa462d7bbdf2031e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: c9c754d8d59c57e4fa462d7bbdf2031e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: c9c754d8d59c57e4fa462d7bbdf2031e, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: c9c754d8d59c57e4fa462d7bbdf2031e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: c9c754d8d59c57e4fa462d7bbdf2031e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: c9c754d8d59c57e4fa462d7bbdf2031e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c9c754d8d59c57e4fa462d7bbdf2031e, type: 3}
+--- !u!4 &1484724644319926884 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400002, guid: c9c754d8d59c57e4fa462d7bbdf2031e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1484724644319789286}
+  m_PrefabAsset: {fileID: 0}
