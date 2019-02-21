@@ -10,17 +10,24 @@ public class AITargetController : MonoBehaviour
 
     public enum AIState { WANDERING, CHASING, DEAD };
 
+    public enum AREA { Callout, Hangout }
+    public AREA area;
 
     private GameObject player;
     private AICharacterControl playerCC;
     
-    private GameObject[] allWaypoints;
+    private List<Transform> currentPath;
     private int currentWaypoint = 0;
 
     private ThirdPersonCharacter tpCharacter;
     private AIState state = AIState.WANDERING;
 
+    private GameObject currentTarget, lastTarget, newTarget;
+    [SerializeField]
+    private float distanceTreshold;
+
     private float deathTimeout = 2.0f;
+    private int pathIterator = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -29,10 +36,8 @@ public class AITargetController : MonoBehaviour
         playerCC = GetComponent<AICharacterControl>();
         tpCharacter = GetComponent<ThirdPersonCharacter>();
 
-        allWaypoints = GameObject.FindGameObjectsWithTag("Waypoint");
-        System.Random rnd = new System.Random(System.DateTime.Now.Millisecond);
-        allWaypoints = allWaypoints.OrderBy(x => rnd.Next()).ToArray();
-
+        currentTarget = currentPath[0].gameObject;
+        newTarget = currentPath[0].gameObject;
     }
 
     // Update is called once per frame
@@ -42,11 +47,29 @@ public class AITargetController : MonoBehaviour
         {
             case AIState.WANDERING:
 
+                if (newTarget != currentTarget)
+                {
+                    currentTarget = newTarget;
+                    pathIterator++;
+                }
+
+                playerCC.target = currentTarget.transform;
+
+                if (IsDestinationReached())
+                {
+                    if (pathIterator >= currentPath.Count)
+                        pathIterator = 0;
+
+                    SetDirection(currentPath[pathIterator].gameObject);
+                }
+
                 if (CanSeePlayer())
                 {
+
                     state = AIState.CHASING;
                 }
                 break;
+
             case AIState.CHASING:
 
                 if (playerCC.target != player.transform)
@@ -69,6 +92,17 @@ public class AITargetController : MonoBehaviour
 
                 break;
         }
+    }
+
+    private bool IsDestinationReached()
+    {
+        float distanceToTarget = Vector3.Distance(transform.position, currentTarget.transform.position);
+        if(distanceToTarget < distanceTreshold)
+        {
+            return true;
+        }
+
+        return false;
     }
 
     private bool CanSeePlayer()
@@ -97,6 +131,17 @@ public class AITargetController : MonoBehaviour
     public AIState getState()
     {
         return state;
+    }
+
+    public void SetDirection(GameObject dir) 
+    {
+        newTarget = dir;
+    }
+
+    public void SetPath(List<Transform> path)
+    {
+        currentPath = path;
+        SetDirection(currentPath[Random.Range(0, currentPath.Count)].gameObject);
     }
 
 
