@@ -8,17 +8,22 @@ using UnityStandardAssets.Characters.ThirdPerson;
 public class AITargetController : MonoBehaviour
 {
 
-    public enum AIState { WANDERING, CHASING, DEAD };
+    public enum AIState { WANDERING, CHASING, DEAD, ALERTING };
+    public AIManager managerAI;
+    
 
     public enum AREA { Callout, Hangout }
     public AREA area;
 
     private GameObject player;
     private AICharacterControl playerCC;
-    
+
+    private Animator animator;
+
     private List<Transform> currentPath;
     private int currentWaypoint = 0;
 
+    private NavMeshAgent navMeshRef;
     private ThirdPersonCharacter tpCharacter;
     private AIState state = AIState.WANDERING;
 
@@ -27,7 +32,8 @@ public class AITargetController : MonoBehaviour
     private float distanceTreshold;
 
     private float deathTimeout = 2.0f;
-    private int pathIterator = 0;
+    public int pathIterator;
+    bool playerBehind;
 
     // Start is called before the first frame update
     void Start()
@@ -35,9 +41,15 @@ public class AITargetController : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         playerCC = GetComponent<AICharacterControl>();
         tpCharacter = GetComponent<ThirdPersonCharacter>();
+        navMeshRef = GetComponent<NavMeshAgent>();
 
-        currentTarget = currentPath[0].gameObject;
-        newTarget = currentPath[0].gameObject;
+        navMeshRef.speed = 0.5f;
+
+        currentTarget = this.gameObject;
+        animator = GetComponent<Animator>();
+
+       // currentTarget = currentPath[0].gameObject;
+       // newTarget = currentPath[0].gameObject;
     }
 
     // Update is called once per frame
@@ -46,6 +58,8 @@ public class AITargetController : MonoBehaviour
         switch (state)
         {
             case AIState.WANDERING:
+                navMeshRef.speed = 0.5f;
+
 
                 if (newTarget != currentTarget)
                 {
@@ -53,7 +67,14 @@ public class AITargetController : MonoBehaviour
                     pathIterator++;
                 }
 
-                playerCC.target = currentTarget.transform;
+                if (currentTarget != null)
+                {
+                    playerCC.target = currentTarget.transform;
+                } else
+                {
+
+                }
+
 
                 if (IsDestinationReached())
                 {
@@ -70,14 +91,19 @@ public class AITargetController : MonoBehaviour
                 }
                 break;
 
+            case AIState.ALERTING:
+
+                break;
+
             case AIState.CHASING:
 
+                navMeshRef.speed = 1;
                 if (playerCC.target != player.transform)
                 {
                     playerCC.target = player.transform;
                 }
 
-                if (!CanSeePlayer())
+                if (!CanSeePlayer() && !playerBehind)
                 {
                     state = AIState.WANDERING;
                 }
@@ -85,12 +111,35 @@ public class AITargetController : MonoBehaviour
 
             case AIState.DEAD:
 
-                this.GetComponent<NavMeshAgent>().enabled = false;
+                this.GetComponent<NavMeshAgent>().speed = 0;
                 this.GetComponent<AICharacterControl>().enabled = false;
+                animator.SetBool("isDying", true);
 
                 Destroy(gameObject, deathTimeout);
 
                 break;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player" && area == AREA.Callout)
+        {
+            Debug.Log("Ariwe");
+            if (!player.GetComponent<ThirdPersonCharacter>().m_Crouching)
+            {
+                state = AIState.CHASING;
+                playerBehind = true;
+            }
+
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            playerBehind = false;
         }
     }
 
@@ -109,7 +158,7 @@ public class AITargetController : MonoBehaviour
     {
         Vector3 playerPos = player.transform.position;
 
-        if (Vector3.Angle(transform.forward, playerPos - transform.position) <= 45)
+        if (Vector3.Angle(transform.forward, playerPos - transform.position) <= 90)
         {
             LayerMask layerMask = LayerMask.NameToLayer("Zombie");
 
@@ -117,7 +166,8 @@ public class AITargetController : MonoBehaviour
 
             if (Physics.Raycast(transform.position + new Vector3(0f, 0.5f, 0f), playerPos - transform.position, out hit, Mathf.Infinity, layerMask))
             {
-                return (hit.collider.tag.Equals("Player"));
+                if (hit.collider.tag.Equals("Player") && !hit.collider.GetComponent<ThirdPersonCharacter>().m_Crouching) 
+                    return (hit.collider.tag.Equals("Player"));
             }
         }
         return false;
@@ -141,7 +191,6 @@ public class AITargetController : MonoBehaviour
     public void SetPath(List<Transform> path)
     {
         currentPath = path;
-        SetDirection(currentPath[Random.Range(0, currentPath.Count)].gameObject);
     }
 
 
