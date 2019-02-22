@@ -16,15 +16,11 @@ public class PlayerAnimationManager : MonoBehaviour
         {
             enemyScript.isKicking = false;
         }
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-
-
-
         bool kicking = Input.GetMouseButton(0);
         animator.SetBool("isKicking", kicking);
         if (enemyScript != null)

@@ -44,7 +44,6 @@ public class AIManager : MonoBehaviour
             }
         }
 
-        //zombies[0].GetComponent<AITargetController>().SetPath(waypointCallout);
 
         for (int i = 0; i < zombies.Count; i++)
         {

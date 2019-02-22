@@ -35,6 +35,8 @@ public class AITargetController : MonoBehaviour
     public int pathIterator;
     bool playerBehind;
 
+    private float walkingSpeed = 0.5f;
+    private float runningSpeed = 1.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,13 +45,11 @@ public class AITargetController : MonoBehaviour
         tpCharacter = GetComponent<ThirdPersonCharacter>();
         navMeshRef = GetComponent<NavMeshAgent>();
 
-        navMeshRef.speed = 0.5f;
+        navMeshRef.speed = walkingSpeed;
 
         currentTarget = this.gameObject;
         animator = GetComponent<Animator>();
 
-       // currentTarget = currentPath[0].gameObject;
-       // newTarget = currentPath[0].gameObject;
     }
 
     // Update is called once per frame
@@ -58,9 +58,7 @@ public class AITargetController : MonoBehaviour
         switch (state)
         {
             case AIState.WANDERING:
-                navMeshRef.speed = 0.5f;
-
-
+                navMeshRef.speed = walkingSpeed;
                 if (newTarget != currentTarget)
                 {
                     currentTarget = newTarget;
@@ -70,34 +68,28 @@ public class AITargetController : MonoBehaviour
                 if (currentTarget != null)
                 {
                     playerCC.target = currentTarget.transform;
-                } else
-                {
-
-                }
-
+                } 
 
                 if (IsDestinationReached())
                 {
                     if (pathIterator >= currentPath.Count)
                         pathIterator = 0;
-
                     SetDirection(currentPath[pathIterator].gameObject);
                 }
 
                 if (CanSeePlayer())
                 {
-
                     state = AIState.CHASING;
                 }
                 break;
 
             case AIState.ALERTING:
 
+                //TODO:
                 break;
 
             case AIState.CHASING:
-
-                navMeshRef.speed = 1;
+                navMeshRef.speed = runningSpeed;
                 if (playerCC.target != player.transform)
                 {
                     playerCC.target = player.transform;
@@ -110,11 +102,9 @@ public class AITargetController : MonoBehaviour
                 break;
 
             case AIState.DEAD:
-
                 this.GetComponent<NavMeshAgent>().speed = 0;
                 this.GetComponent<AICharacterControl>().enabled = false;
                 animator.SetBool("isDying", true);
-
                 Destroy(gameObject, deathTimeout);
 
                 break;
@@ -125,13 +115,11 @@ public class AITargetController : MonoBehaviour
     {
         if (other.tag == "Player" && area == AREA.Callout)
         {
-            Debug.Log("Ariwe");
             if (!player.GetComponent<ThirdPersonCharacter>().m_Crouching)
             {
                 state = AIState.CHASING;
                 playerBehind = true;
             }
-
         }
     }
 
